@@ -43,4 +43,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.021"
         app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/baseline_arrow_right_24"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="429dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
