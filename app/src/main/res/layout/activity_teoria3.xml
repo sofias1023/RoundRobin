@@ -31,6 +31,20 @@
         app:layout_constraintTop_toTopOf="@+id/imageView3"
         app:layout_constraintVertical_bias="0.889" />
 
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="345dp"
+        android:layout_height="50dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="Formulas usadas en el algoritmo Round Robin"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.512" />
+
     <ImageButton
         android:id="@+id/btnAtras"
         android:layout_width="wrap_content"
@@ -44,11 +58,72 @@
         app:layout_constraintVertical_bias="0.021"
         app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
 
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="354dp"
+        android:layout_height="48dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Tiempo de finalización (CT): Es el momento en que un proceso termina su ejecución."
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.692"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.618" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="355dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Tiempo de retorno (TAT): Es el tiempo total desde que un proceso llega hasta que finaliza su ejecución."
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.684"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="TAT = CT−AT"
+        android:textSize="34sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.863" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.599"
+        app:srcCompat="@drawable/baseline_arrow_right_24" />
+
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/baseline_arrow_right_24"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="429dp" />
+        android:layout_marginBottom="220dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.983"
+        app:srcCompat="@drawable/baseline_arrow_right_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

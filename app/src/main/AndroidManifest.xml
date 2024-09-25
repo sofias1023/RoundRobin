@@ -13,6 +13,9 @@
         android:theme="@style/Theme.RoundRobin"
         tools:targetApi="31">
         <activity
+            android:name=".TeoriaActivityFinal"
+            android:exported="false" />
+        <activity
             android:name=".CreditosActivity"
             android:exported="false" />
         <activity
