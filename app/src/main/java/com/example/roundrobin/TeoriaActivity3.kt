@@ -19,7 +19,7 @@ class TeoriaActivity3 : AppCompatActivity() {
 
         btnSig.setOnClickListener {
 
-            val intent = Intent(this, FuncionalesActivity::class.java)
+            val intent = Intent(this, TeoriaActivityFinal::class.java)
             startActivity(intent)
         }
         btnAtras.setOnClickListener {
