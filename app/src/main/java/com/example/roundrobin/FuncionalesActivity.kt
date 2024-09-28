@@ -17,6 +17,7 @@ class FuncionalesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_funcionales)
+
         val etNumProcesses: EditText = findViewById(R.id.et_num_processes)
         val etBurstTimes: EditText = findViewById(R.id.et_burst_times)
         val etQuantum: EditText = findViewById(R.id.et_quantum)
@@ -25,25 +26,21 @@ class FuncionalesActivity : AppCompatActivity() {
 
         btnSimulate.setOnClickListener {
             val numProcesses = etNumProcesses.text.toString().toInt()
-            val burstTimes =
-                etBurstTimes.text.toString().split(",").map { it.trim().toInt() }.toMutableList()
+            val burstTimes = etBurstTimes.text.toString().split(",").map { it.trim().toInt() }.toMutableList()
             val quantum = etQuantum.text.toString().toInt()
-
             val waitingTimes = MutableList(numProcesses) { 0 }
             val turnaroundTimes = MutableList(numProcesses) { 0 }
             var currentTime = 0
             val remainingTimes = burstTimes.toMutableList()
 
-            // Limpiar la tabla antes de cada simulación
+            // Se limpia la tabla antes de cada simulación
             tblResults.removeViews(1, tblResults.childCount - 1)
 
             while (true) {
                 var done = true
-
                 for (i in 0 until numProcesses) {
                     if (remainingTimes[i] > 0) {
                         done = false
-
                         if (remainingTimes[i] > quantum) {
                             currentTime += quantum
                             remainingTimes[i] -= quantum
@@ -57,7 +54,6 @@ class FuncionalesActivity : AppCompatActivity() {
 
                 if (done) break
             }
-
             for (i in 0 until numProcesses) {
                 turnaroundTimes[i] = burstTimes[i] + waitingTimes[i]
             }
@@ -98,7 +94,7 @@ class FuncionalesActivity : AppCompatActivity() {
 
             for (i in 0 until numProcesses) {
                 if (remainingTimes[i] > 0) {
-                    done = false // Hay procesos pendientes
+                    done = false // Si se encuentran procesos pendientes
 
                     if (remainingTimes[i] > quantum) {
                         currentTime += quantum
@@ -120,10 +116,10 @@ class FuncionalesActivity : AppCompatActivity() {
 
         // Generar el resultado en forma de String
         var result = "Resultados:\n"
+
         for (i in 0 until numProcesses) {
             result += "Proceso ${i + 1}: Tiempo de espera = ${waitingTimes[i]}, Tiempo de retorno = ${turnaroundTimes[i]}\n"
         }
-
         return result
     }
 }
