@@ -7,4 +7,71 @@
     android:layout_height="match_parent"
     tools:context=".FuncionalesActivity">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/et_num_processes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número de procesos"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/et_burst_times"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tiempos de ráfaga (separados por comas)"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_quantum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quantum"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btn_simulate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simular" />
+
+        <!-- Aquí se mostrará la tabla con los resultados -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:id="@+id/tbl_results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1">
+
+                <!-- Encabezado de la tabla -->
+                <TableRow>
+                    <TextView
+                        android:text="Proceso"
+                        android:padding="8dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:text="Espera"
+                        android:padding="8dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:text="Retorno"
+                        android:padding="8dp"
+                        android:textStyle="bold" />
+                </TableRow>
+            </TableLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
