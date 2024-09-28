@@ -1,5 +1,6 @@
 package com.example.roundrobin
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.Button
@@ -7,12 +8,14 @@ import android.widget.EditText
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class FuncionalesActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,18 +26,72 @@ class FuncionalesActivity : AppCompatActivity() {
         val etQuantum: EditText = findViewById(R.id.et_quantum)
         val btnSimulate: Button = findViewById(R.id.btn_simulate)
         val tblResults: TableLayout = findViewById(R.id.tbl_results)
+        val btnSig: Button = findViewById(R.id.btnSiguiente)
+
+        btnSig.setOnClickListener {
+            val intent = Intent(this, CreditosActivity::class.java)
+            startActivity(intent)
+        }
 
         btnSimulate.setOnClickListener {
-            val numProcesses = etNumProcesses.text.toString().toInt()
-            val burstTimes = etBurstTimes.text.toString().split(",").map { it.trim().toInt() }.toMutableList()
-            val quantum = etQuantum.text.toString().toInt()
+            // Validación de entradas
+            val numProcessesText = etNumProcesses.text.toString()
+            val burstTimesText = etBurstTimes.text.toString()
+            val quantumText = etQuantum.text.toString()
+
+            // Validación de número de procesos
+            if (numProcessesText.isEmpty()) {
+                showToast("Por favor ingresa el número de procesos")
+                return@setOnClickListener
+            }
+
+            val numProcesses = try {
+                numProcessesText.toInt()
+            } catch (e: NumberFormatException) {
+                showToast("El número de procesos debe ser un número válido")
+                return@setOnClickListener
+            }
+
+            // Validación de tiempos de ráfaga
+            if (burstTimesText.isEmpty()) {
+                showToast("Por favor ingresa los tiempos de ráfaga (separados por comas)")
+                return@setOnClickListener
+            }
+
+            val burstTimes = try {
+                burstTimesText.split(",").map { it.trim().toInt() }.toMutableList()
+            } catch (e: Exception) {
+                showToast("Los tiempos de ráfaga deben ser números válidos separados por comas")
+                return@setOnClickListener
+            }
+
+            // Validación de quantum
+            if (quantumText.isEmpty()) {
+                showToast("Por favor ingresa el quantum")
+                return@setOnClickListener
+            }
+
+            val quantum = try {
+                quantumText.toInt()
+            } catch (e: NumberFormatException) {
+                showToast("El quantum debe ser un número válido")
+                return@setOnClickListener
+            }
+
+            // Validar que el número de procesos coincida con la cantidad de tiempos de ráfaga
+            if (burstTimes.size != numProcesses) {
+                showToast("El número de procesos no coincide con la cantidad de tiempos de ráfaga")
+                return@setOnClickListener
+            }
+
+            // Se limpia la tabla antes de cada simulación
+            tblResults.removeViews(1, tblResults.childCount - 1)
+
+            // Simulación del algoritmo Round Robin
             val waitingTimes = MutableList(numProcesses) { 0 }
             val turnaroundTimes = MutableList(numProcesses) { 0 }
             var currentTime = 0
             val remainingTimes = burstTimes.toMutableList()
-
-            // Se limpia la tabla antes de cada simulación
-            tblResults.removeViews(1, tblResults.childCount - 1)
 
             while (true) {
                 var done = true
@@ -54,6 +111,7 @@ class FuncionalesActivity : AppCompatActivity() {
 
                 if (done) break
             }
+
             for (i in 0 until numProcesses) {
                 turnaroundTimes[i] = burstTimes[i] + waitingTimes[i]
             }
@@ -77,10 +135,14 @@ class FuncionalesActivity : AppCompatActivity() {
                 tvTurnaroundTime.gravity = Gravity.CENTER
                 tableRow.addView(tvTurnaroundTime)
 
-
                 tblResults.addView(tableRow)
             }
         }
+    }
+
+    // Función para mostrar un mensaje Toast con el error
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun roundRobin(numProcesses: Int, burstTimes: MutableList<Int>, quantum: Int): String {
