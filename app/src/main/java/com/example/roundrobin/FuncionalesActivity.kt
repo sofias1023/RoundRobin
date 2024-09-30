@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
@@ -28,10 +29,12 @@ class FuncionalesActivity : AppCompatActivity() {
         val tblResults: TableLayout = findViewById(R.id.tbl_results)
         val btnSig: Button = findViewById(R.id.btnSiguiente)
 
+
         btnSig.setOnClickListener {
             val intent = Intent(this, CreditosActivity::class.java)
             startActivity(intent)
         }
+
 
         btnSimulate.setOnClickListener {
             // Validación de entradas
